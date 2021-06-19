@@ -11,6 +11,11 @@ public class Mapa implements IMap{
     private final int y;
     private ISoliders [][] soliders;
 
+    /**
+     * Tworzy i inicjalizuje mape o wymiarach podanych w argumentach
+     * @param x - ilość wierszy mapy
+     * @param y - ilość kolumn mapy
+     */
     public Mapa(int x, int y){
 
         this.x=x; //ilość wierszy
@@ -49,19 +54,19 @@ public class Mapa implements IMap{
 
     @Override
     public int getXSoliderPosition(ISoliders solider) { // Zwraca numer wiersza na którym znajduje się jednostka
-            Integer soliderX = null ;
-            for(int i = 0 ; i<soliders.length ; i++){
-                for(int j=0; j<soliders[i].length; j++){
-                    if( solider == soliders[i][j]){
+        Integer soliderX = null ;
+        for(int i = 0 ; i<soliders.length ; i++){
+            for(int j=0; j<soliders[i].length; j++){
+                if( solider == soliders[i][j]){
                     soliderX=i;}
-                }
             }
-            if(soliderX== null) {
-                return -1;
-            }
-            else {
-                return soliderX.intValue();
-            }
+        }
+        if(soliderX== null) {
+            return -1;
+        }
+        else {
+            return soliderX.intValue();
+        }
     }
     @Override
     public int getYSoliderPosition(ISoliders solider) { // Zwraca numer kolumny na którym znajduje się jednostka
@@ -69,7 +74,7 @@ public class Mapa implements IMap{
         for(int i = 0 ; i<soliders.length ; i++){
             for(int j=0; j<soliders[i].length; j++){
                 if( solider == soliders[i][j]){
-                soliderY=j;}
+                    soliderY=j;}
             }
         }
         if(soliderY== null) {
@@ -84,24 +89,25 @@ public class Mapa implements IMap{
     @Override
     public boolean settleSolider(ISoliders solider, int x, int y) {
 
-       int settledX = getXSoliderPosition(solider);
-       int settledY = getYSoliderPosition(solider);
+
         if (soliders [x][y] != null ){
             return false;
         }
+        int settledX = getXSoliderPosition(solider);
+        int settledY = getYSoliderPosition(solider);
         if(settledX >=0 || settledY>=0) {
             soliders[settledX][settledY] = null;
         }
         solider.setMap(this);
         soliders[x][y]= solider;
-         return true;
+        return true;
 
     }
     @Override
     public void deleteFromTheMap(ISoliders solider){
-       int x =   getXSoliderPosition(solider);
-       int y = getYSoliderPosition(solider);
-       soliders[x][y]=null;
+        int x =   getXSoliderPosition(solider);
+        int y = getYSoliderPosition(solider);
+        soliders[x][y]=null;
     }
 
 
@@ -115,7 +121,7 @@ public class Mapa implements IMap{
                 }
             }
         }
-                return x;
+        return x;
     }
     @Override
     public int howManyBOnTheMap() {
