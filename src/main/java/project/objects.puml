@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object Halaberdier{
+hp:150
+attackPower:80
+}
+object Imap
+Imap--*Halaberdier
+
+object  Knight{
+hp:300
+attackPower:30
+armor:30
+}
+Imap--*Knight
+
+object Mage{
+hp:150
+attackPower:50
+mana:100
+}
+Imap--*Mage
+
+object Shooter{
+hp:200
+attackPower:70
+arrows:5
+}
+Imap--*Shooter
+
+
+
+@enduml

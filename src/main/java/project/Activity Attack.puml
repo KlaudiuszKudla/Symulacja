@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+partition Running
+repeat
+:Wait for solider turn;
+:Choose random enemy;
+partition Turn
+repeat
+:Attack enemy;
+repeat while (enemy hp<0) is (no)
+:kill;
+}
+repeat while(is any enemy solider on the map?) is (yes)
+}
+stop
+
+@enduml

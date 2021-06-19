@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+
+[*] --> Initialised
+
+state Initialised
+Initialised --> Assigned:Assign to army
+Assigned -->Checking2:Put on map
+
+
+Checking2:Check if enemy Amry
+Checking2: is on the same position
+Checking -->Choose: no
+Checking :Check if Tower or Bush
+Checking--> Change :yes
+Checking2-->Checking : yes
+Change: Change values
+Change -->Choose
+Choose:Choose target
+Choose-->Attack
+Attack-->Checking3
+Checking3:Check if hp<0
+Checking3 --> Kill: yes
+Checking3--> Attack: no
+Attack: attack enemy
+Checking2 --> Move: no
+Move:Move to another position
+Move -->Checking2
+Kill-->Checking2
+
+}
+@enduml

@@ -1,0 +1,191 @@
+@startuml
+'https://plantuml.com/class-diagram
+package "project"
+{
+class Simulation{
++main(String[]args)
+}
+
+package "project.Soliders" #DDDDDD
+{
+interface ISoliders{
++ getAttack():ISolidersAttack
++ acceptAttack(ISolidersAttack):void
++ getProperty(EUnitProperties):double
++ getName():String
++ getNeighbours():List<ISoliders>
++ canAttack(List<ISoliders>):void
++ getFirstCharOfTheName():char
++ getEnemyNeighboursSize(List<ISoliders>):int
++ getMap():IMap
++ setMap(IMap):void
++ move():void
+}
+
+enum EAtackTypes{
+PHYSIXCAL
+MAGICAL
+}
+enum EUnitProperties{
+HP
+ARMOR
+ATTACKSPEED
+MAGICRESIST
+}
+abstract class ASoliders implements ISoliders{
+
+
+ # rnd:Random
+ # seed:long
+ # stats:Map<EUnitProperties, Double>
+ # attack:ISolidersAttack
+ # map:IMap
+
+ + ASoliders(String, IMap)
+ + getAttack():ISolidersAttack
+ + acceptAttack(ISolidersAttack):void
+ + getProperty(EUnitProperties):double
+ + getName():String
+ + getNeighbours():List<ISoliders>
+ + canAttack(List<ISoliders>):void
+ + getFirstCharOfTheName():char
+ + getEnemyNeighboursSize(List<ISoliders>):int
+ + getMap():IMap
+ + setMap(IMap):void
+ + move():void
+
+ }
+
+ interface ISolidersAttack{
+    + getDamage(EAtackTypes):double
+    + setDamage((EAtackTypes, double):void
+                   }
+                   ASoliders *-- ISolidersAttack :attack
+     class SolidersAttack implements ISolidersAttack{
+       ~ attacks:Map<EAtackTypes,Double>
+        + getDamage(EAtackTypes):double
+           + setDamage((EAtackTypes, double):void
+     }
+
+    class Halberdier extends ASoliders  {
+        + Halberdier(String, IMap)
+        + acceptAttack():void
+
+
+}
+    class Knight extends ASoliders {
+
+           + Knight(String, IMap)
+           + acceptAttack( ):void
+}
+
+class Shooter extends ASoliders {
+
+    + Shooter(String, IMap )
+               + acceptAttack():void
+
+    }
+    class Mage extends ASoliders {
+
+    +Mage(String, IMap)
+    + acceptAttack():void
+    }
+
+
+}
+
+
+     package "project.Map"{
+interface IMap {
+
+     + getSolider(int, int):ISoliders
+      +getXSize():int
+       +getYSize():int
+     +getXSoliderPosition(ISoliders):int
+      + getYSoliderPosition(ISoliders):
+       +settleSolider(ISoliders , int, int):boolean
+      +toString():String
+      +deleteFromTheMap(ISoliders solider):void
+      +howManyAOnTheMap():int
+      +howManyBOnTheMap():int
+
+
+}
+
+class Mapa implements IMap {
+
+    - x:int
+    - y:int
+    - soliders:ISoliders[][]
+    + Mapa(int, int)
+    + getSolider(int, int):ISoliders
+          +getXSize():int
+           +getYSize():int
+         +getXSoliderPosition(ISoliders):int
+          + getYSoliderPosition(ISoliders):
+           +settleSolider(ISoliders , int, int):boolean
+          +toString():String
+          +deleteFromTheMap(ISoliders solider):void
+          +howManyAOnTheMap():int
+          +howManyBOnTheMap():int
+}
+
+
+}
+package "project.Army"
+{
+interface ICreateArmy{
++createHalberdier():Halberdier
++createShooter():Shooter
++createMage():Mage
++createKnight():Knight
++createArmy():List<ISoliders>
+}
+
+abstract class AArmy implements ICreateArmy{
+#numOfHalbardiers:int
+#numOfKnights:int
+#numOfMages:int
+#numOfShooters:int
++AArmy(int,int,int,int,IMap)
++createArmy():List<ISoliders>
+
+}
+class ArmyA extends AArmy{
++ArmyA(int,int,int,int,IMap)
++createHalberdier():Halberdier
++createShooter():Shooter
++createMage():Mage
++createKnight():Knight
+
+
+}
+class ArmyB extends AArmy{
+
++ArmyB(int,int,int,int,IMap)
++createHalberdier():Halberdier
++createShooter():Shooter
++createMage():Mage
++createKnight():Knight
+}
+}
+package "project.Arena"
+{
+    interface IFight{
+    +setSoliders(ISoliders, ISoliders):void
+    +performFight():String
+    }
+    abstract class AFight implements IFight{
+        +soliderA:ISoliders
+        +soliderB:ISoliders
+        +setSoliders(ISoliders, ISoliders):void
+    }
+    class FightSimple extends AFight{
+    +performFight():String
+    }
+
+}
+
+
+}
+@enduml

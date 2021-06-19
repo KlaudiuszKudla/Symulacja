@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+[-> Army :Check type of the map
+Army->Map: Give me my location
+Map->Army :Location
+Army->Map : Change soliders values
+[<- Army: Done
+@enduml

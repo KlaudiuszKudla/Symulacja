@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+partition Running{
+repeat
+:Wait for army turn;
+partition Turn{
+repeat
+:Put the army on the map;
+:Find neighbour;
+
+:move;
+repeat while (Is enemy army on the same position) is (no);
+:Fight;
+
+}
+
+repeat while(Stop condition met?) is (no);
+}
+stop
+@enduml

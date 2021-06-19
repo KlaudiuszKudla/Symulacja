@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+[->Solider:Attack
+activate Solider
+Solider-->Map:Choose random enemy
+Map-->Solider: random enemy
+loop until enemy die
+Solider->EnemySolider: attack
+end
+EnemySolider->Solider : hp<0
+Solider->EnemySolider:kill
+EnemySolider->EnemyArmy: delete me from the army
+<-Solider : done
+deactivate Solider
+
+
+@enduml

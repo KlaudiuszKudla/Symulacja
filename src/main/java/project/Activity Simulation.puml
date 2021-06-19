@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Create map;
+:Create soliders;
+:Put the soliders into Army;
+repeat
+:Move on the map;
+repeat while (Stop condition met) is (no)
+->yes;
+
+stop
+
+
+
+
+
+
+
+
+
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Army->Map :settle me
+activate Map
+loop  until settlement impossible
+Map->Army: generate random position
+Army->Map:answer
+Map->Map: Is the settlement possible?
+Map->Map: Answer
+end
+Map->Map: Move army to the location
+ Map->Army:Done
+ deactivate Map
+
+@enduml
