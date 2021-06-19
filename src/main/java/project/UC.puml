@@ -5,7 +5,6 @@
 
 User -> (Start Simulation)
 User -> (Set space size)
-User -> (Chose type of Army)
 User -> (Chose numbers of soliders)
 
 

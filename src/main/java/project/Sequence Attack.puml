@@ -4,15 +4,21 @@
 autonumber
 [->Solider:Attack
 activate Solider
-Solider-->Map:Choose random enemy
-Map-->Solider: random enemy
-loop until enemy die
-Solider->EnemySolider: attack
+Solider-->Map:Get enemy neighbours
+Map-->Solider: List of the neighbours
+loop While  In list of neighbours we have soliders
+Solider-->Solider: choose random enemy
+Solider-->EnemySolider:Check if enemy
+EnemySolider-->Solider:answer
+group If [is enemy]
+Solider->Arena:perform fight
+
 end
-EnemySolider->Solider : hp<0
-Solider->EnemySolider:kill
-EnemySolider->EnemyArmy: delete me from the army
-<-Solider : done
+
+Arena->Solider : Name of killed
+end
+<-Solider:Done
+
 deactivate Solider
 
 

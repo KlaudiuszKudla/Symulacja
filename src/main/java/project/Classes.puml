@@ -186,6 +186,11 @@ package "project.Arena"
 
 }
 
+ISoliders--o IMap
+IMap--o ISoliders
+ISoliders--o IFight
+IMap--o ICreateArmy
+
 
 }
 @enduml

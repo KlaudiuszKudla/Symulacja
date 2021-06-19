@@ -1,33 +1,114 @@
 @startuml
 'https://plantuml.com/object-diagram
 
-object Halaberdier{
-hp:150
-attackPower:80
-}
-object Imap
-Imap--*Halaberdier
+object "Halabardier: h2" as a0{
+rnd=5
+seed=10
+stats<Hp,200>
+stats<ARMOR,20>
+stats<ATTACKSPEED,1>
+name="AH"
+map=mapa
 
-object  Knight{
-hp:300
-attackPower:30
-armor:30
 }
-Imap--*Knight
 
-object Mage{
-hp:150
-attackPower:50
-mana:100
+object "Imap: mapa" as o4{
+x=10
+y=10
+soliders[1][3]=h2
 }
-Imap--*Mage
 
-object Shooter{
-hp:200
-attackPower:70
-arrows:5
+o4--o a0 :stores reference
+a0--o o4 :stores position
+
+object  "Knight: k1" as a1{
+rnd=7
+seed=11
+stats<Hp,300>
+stats<ARMOR,30>
+stats<ATTACKSPEED,2>
+stats<<MAGICRESIST,20>
+name="AK"
+map=mapa
+
+
 }
-Imap--*Shooter
+o4--o a1 :stores reference
+a1--o o4 :stores position
+
+object "Mage: m3" as a2{
+rnd=3
+seed=4
+stats<Hp,210>
+stats<ATTACKSPEED,3>
+name="BM"
+map=mapa
+
+}
+o4--o a2 :stores reference
+a2--o o4 :stores position
+
+object "Shooter: s2" as a3{
+rnd=7
+seed=11
+stats<Hp,220>
+stats<ATTACKSPEED,4>
+name="BS"
+map=mapa
+
+}
+o4--o a3 :stores reference
+a3--o o4 :stores position
+
+object  "ArmyA: militaryA" as ArmyA{
+numOfHalbardiers=1
+numOfKnights=0
+numOfMages=5
+numOfShooters=0
+mapa= mapa
+}
+ArmyA--a0
+ArmyA--a2
+object  "ArmyB: militaryB" as ArmyB{
+numOfHalbardiers=0
+numOfKnights=7
+numOfMages=0
+numOfShooters=3
+mapa= mapa
+}
+
+ArmyB--a3
+ArmyB--a1
+
+object "SolidersAttack: attack1" as y1{
+attacks<PHYSICAL,80>
+}
+y1--*a0 :attack
+
+object "SolidersAttack: attack2" as y2{
+attacks<PHYSICAL,50>
+}
+y2--*a1 :attack
+
+object "SolidersAttack: attack3" as y3{
+attacks<PHYSICAL,70>
+}
+y3--*a3 :attack
+
+object "SolidersAttack: attack4" as y4{
+attacks<MAGICAL,80>
+}
+y4--*a2 :attack
+
+object "FightSimple:fight" as k1{
+soliderA=k1
+soliderB=m3
+}
+
+a1--o k1
+a2--o k1
+
+
 
 
 

@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+[->IFight :performFight
+activate IFight
+IFight->SoliderA :getAttackspeed
+SoliderA->IFight:answer
+IFight->SoliderB:getAttackspeed
+SoliderB->IFight:answer
+loop while soliderA HP>0 && soliderB HP >0
+IFight->SoliderB:accept attack
+IFight->SoliderA:accept attack
+end
+IFight->SoliderA:getName
+SoliderA->Map :delete me from the map
+<-IFight :Name
+
+@enduml

@@ -6,28 +6,37 @@
 
 state Initialised
 Initialised --> Assigned:Assign to army
-Assigned -->Checking2:Put on map
+Assigned --> SettledDown: settle down
+SettledDown -->Wait:Put soliders on map
+Wait:wait for solider's turn
+Wait-->Checking
 
 
-Checking2:Check if enemy Amry
-Checking2: is on the same position
-Checking -->Choose: no
-Checking :Check if Tower or Bush
-Checking--> Change :yes
-Checking2-->Checking : yes
-Change: Change values
-Change -->Choose
-Choose:Choose target
-Choose-->Attack
-Attack-->Checking3
-Checking3:Check if hp<0
-Checking3 --> Kill: yes
-Checking3--> Attack: no
-Attack: attack enemy
-Checking2 --> Move: no
-Move:Move to another position
-Move -->Checking2
-Kill-->Checking2
+
+Checking:Check if enemy soliders
+Checking:is your neighbour
+Checking-->Move: no
+Checking--> Choose: yes
+Choose:choose random neighbour
+Move-->Choose
+Choose-->attack
+attack:attack enemy
+attack-->Checking2
+Checking2:chceck if hp<0
+Checking2-->attack: no
+Checking2-->kill: yes
+kill-->Checking3
+Checking3: check if u have neighbour
+Checking3->Choose: yes
+Checking3-->Wait
+
+
+
+
+
+
+
+
 
 }
 @enduml

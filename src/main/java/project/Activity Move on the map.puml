@@ -10,8 +10,7 @@ repeat
 :Put the army on the map;
 :Find neighbour;
 
-:move;
-repeat while (Is enemy army on the same position) is (no);
+repeat while (Is enemy solider your neighbour?) is (no);
 :Fight;
 
 }

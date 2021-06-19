@@ -3,16 +3,15 @@
 
 autonumber
 
-Army->Map :settle me
+Solider->Solider :Move
 activate Map
 loop  until settlement impossible
-Map->Army: generate random position
-Army->Map:answer
-Map->Map: Is the settlement possible?
-Map->Map: Answer
+Solider->Solider: generate random position
+Solider->Map: Is the settlement possible?
+Map->Solider: Answer
 end
 Map->Map: Move army to the location
- Map->Army:Done
+ Map->Solider:Done
  deactivate Map
 
 @enduml

@@ -80,7 +80,6 @@ public class Simulation {
                             System.out.println("Zostalo " +mapa.howManyBOnTheMap() +"zolnierzy druzyny B");
                             militaryB.get(i).canAttack(militaryB.get(i).getNeighbours());
                         }
-
                     }
                 }
 
@@ -94,8 +93,6 @@ public class Simulation {
             }
 
         }
-
-
 
 
     }
